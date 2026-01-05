@@ -49,4 +49,4 @@ The API will be available at `http://127.0.0.1:5000`.
 - Hero-power strengths: 'Strong', 'Weak', or 'Average'.
 
 ## Deployment
-See hosting options in the full README for Render/Heroku/Docker.
+Render

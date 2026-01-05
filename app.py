@@ -4,7 +4,7 @@ from flask_migrate import Migrate
 from models import db, setup_db, Hero, Power, HeroPower
 
 
-# Read database URL from environment (Render/Heroku provide DATABASE_URL)
+# Read database URL from environment variables 
 def get_database_uri():
     return os.environ.get('DATABASE_URL') or os.environ.get('SQLALCHEMY_DATABASE_URI') or 'sqlite:///superheroes.db'
 
@@ -31,51 +31,42 @@ def create_app(test_config=None):
 
     @app.route('/docs', methods=['GET'])
     def docs():
-        return jsonify({
-            "title": "Superhero API Documentation",
-            "version": "1.0",
-            "description": "API for tracking heroes and their superpowers",
-            "endpoints": {
-                "GET /heroes": {
-                    "description": "Get a list of all heroes",
-                    "response": "Array of hero objects with id, name, super_name"
-                },
-                "GET /heroes/<id>": {
-                    "description": "Get a specific hero by ID",
-                    "response": "Hero object with nested hero_powers",
-                    "errors": {"404": "Hero not found"}
-                },
-                "GET /powers": {
-                    "description": "Get a list of all powers",
-                    "response": "Array of power objects with id, name, description"
-                },
-                "GET /powers/<id>": {
-                    "description": "Get a specific power by ID",
-                    "response": "Power object",
-                    "errors": {"404": "Power not found"}
-                },
-                "PATCH /powers/<id>": {
-                    "description": "Update a power's description",
-                    "body": {"description": "string (min 20 chars)"},
-                    "response": "Updated power object",
-                    "errors": {"404": "Power not found", "400": "Validation errors"}
-                },
-                "POST /hero_powers": {
-                    "description": "Create a hero-power association",
-                    "body": {"strength": "Strong|Weak|Average", "power_id": "int", "hero_id": "int"},
-                    "response": "Created HeroPower with nested hero and power",
-                    "errors": {"400": "Validation errors", "404": "Hero or power not found"}
-                },
-                "GET /health": {
-                    "description": "Health check",
-                    "response": {"status": "ok"}
-                },
-                "GET /": {
-                    "description": "API overview",
-                    "response": "List of endpoints"
-                }
-            }
-        }), 200
+        html = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Superhero API Documentation</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h1 { color: #333; }
+                h2 { color: #555; margin-top: 30px; }
+                .method { padding: 5px 10px; border-radius: 4px; color: white; font-weight: bold; display: inline-block; width: 60px; text-align: center; }
+                .get { background-color: #28a745; }
+                .post { background-color: #007bff; }
+                .patch { background-color: #ffc107; color: black; }
+                ul { list-style-type: none; padding: 0; }
+                li { margin: 10px 0; display: flex; align-items: center; }
+                .endpoint { margin-left: 10px; }
+            </style>
+        </head>
+        <body>
+            <h1>Superhero API Documentation</h1>
+            <h2>Endpoints</h2>
+            <ul>
+                <li><span class="method get">GET</span><span class="endpoint"> /heroes - Get a list of all heroes</span></li>
+                <li><span class="method get">GET</span><span class="endpoint"> /heroes/&lt;id&gt; - Get a specific hero by ID</span></li>
+                <li><span class="method get">GET</span><span class="endpoint"> /powers - Get a list of all powers</span></li>
+                <li><span class="method get">GET</span><span class="endpoint"> /powers/&lt;id&gt; - Get a specific power by ID</span></li>
+                <li><span class="method patch">PATCH</span><span class="endpoint"> /powers/&lt;id&gt; - Update a power's description</span></li>
+                <li><span class="method post">POST</span><span class="endpoint"> /hero_powers - Create a hero-power association</span></li>
+                <li><span class="method get">GET</span><span class="endpoint"> /health - Health check</span></li>
+                <li><span class="method get">GET</span><span class="endpoint"> / - API overview</span></li>
+                <li><span class="method get">GET</span><span class="endpoint"> /docs - This documentation</span></li>
+            </ul>
+        </body>
+        </html>
+        """
+        return html
 
     @app.route('/heroes', methods=['GET'])
     def get_heroes():

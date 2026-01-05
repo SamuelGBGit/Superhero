@@ -18,3 +18,19 @@ nohup: ignoring input
 127.0.0.1 - - [05/Jan/2026 18:34:12] "GET /health HTTP/1.1" 200 -
 127.0.0.1 - - [05/Jan/2026 18:34:17] "[33mGET /health/docs HTTP/1.1[0m" 404 -
 127.0.0.1 - - [05/Jan/2026 18:34:22] "GET /docs HTTP/1.1" 200 -
+ * Detected change in '/home/taida/assignment/Superhero/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 109-931-349
+ * Detected change in '/home/taida/assignment/Superhero/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 109-931-349
+127.0.0.1 - - [05/Jan/2026 18:49:55] "GET /powers HTTP/1.1" 200 -
+127.0.0.1 - - [05/Jan/2026 18:50:01] "[33mGET /powers/docs HTTP/1.1[0m" 404 -
+127.0.0.1 - - [05/Jan/2026 18:50:08] "GET /docs HTTP/1.1" 200 -
+ * Detected change in '/home/taida/assignment/Superhero/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 109-931-349
+127.0.0.1 - - [05/Jan/2026 18:52:24] "GET /docs HTTP/1.1" 200 -

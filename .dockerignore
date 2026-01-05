@@ -1,0 +1,16 @@
+venv
+__pycache__
+.pytest_cache
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+superheroes.db
+env
+.env
+app.log
+flask_app.pid
+.vscode
+*.egg-info
+dist
+build

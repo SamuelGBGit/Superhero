@@ -1,0 +1,22 @@
+nohup: ignoring input
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 131-280-933
+127.0.0.1 - - [05/Jan/2026 14:41:17] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [05/Jan/2026 14:41:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+127.0.0.1 - - [05/Jan/2026 14:42:43] "GET /heroes HTTP/1.1" 200 -
+/home/taida/assignment/Superhero/app.py:22: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  hero = Hero.query.get(hero_id)
+127.0.0.1 - - [05/Jan/2026 14:42:43] "GET /heroes/1 HTTP/1.1" 200 -
+127.0.0.1 - - [05/Jan/2026 14:43:39] "GET /heroes HTTP/1.1" 200 -
+127.0.0.1 - - [05/Jan/2026 14:43:40] "GET /heroes/1 HTTP/1.1" 200 -
+127.0.0.1 - - [05/Jan/2026 14:45:07] "GET /heroes HTTP/1.1" 200 -
+ * Detected change in '/home/taida/assignment/Superhero/wsgi.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 131-280-933

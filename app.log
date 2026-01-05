@@ -6,25 +6,15 @@ nohup: ignoring input
 [33mPress CTRL+C to quit[0m
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 131-280-933
-127.0.0.1 - - [05/Jan/2026 14:41:17] "[33mGET / HTTP/1.1[0m" 404 -
-127.0.0.1 - - [05/Jan/2026 14:41:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-127.0.0.1 - - [05/Jan/2026 14:42:43] "GET /heroes HTTP/1.1" 200 -
-/home/taida/assignment/Superhero/app.py:22: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+ * Debugger PIN: 109-931-349
+/home/taida/assignment/Superhero/app.py:87: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
   hero = Hero.query.get(hero_id)
-127.0.0.1 - - [05/Jan/2026 14:42:43] "GET /heroes/1 HTTP/1.1" 200 -
-127.0.0.1 - - [05/Jan/2026 14:43:39] "GET /heroes HTTP/1.1" 200 -
-127.0.0.1 - - [05/Jan/2026 14:43:40] "GET /heroes/1 HTTP/1.1" 200 -
-127.0.0.1 - - [05/Jan/2026 14:45:07] "GET /heroes HTTP/1.1" 200 -
- * Detected change in '/home/taida/assignment/Superhero/wsgi.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 131-280-933
- * Detected change in '/home/taida/assignment/Superhero/app.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 131-280-933
- * Detected change in '/home/taida/assignment/Superhero/app.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 131-280-933
+127.0.0.1 - - [05/Jan/2026 18:21:14] "GET /heroes/1 HTTP/1.1" 200 -
+127.0.0.1 - - [05/Jan/2026 18:21:23] "GET /heroes/1 HTTP/1.1" 200 -
+127.0.0.1 - - [05/Jan/2026 18:21:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+127.0.0.1 - - [05/Jan/2026 18:31:12] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [05/Jan/2026 18:31:19] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [05/Jan/2026 18:34:10] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [05/Jan/2026 18:34:12] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [05/Jan/2026 18:34:17] "[33mGET /health/docs HTTP/1.1[0m" 404 -
+127.0.0.1 - - [05/Jan/2026 18:34:22] "GET /docs HTTP/1.1" 200 -

@@ -22,6 +22,61 @@ def create_app(test_config=None):
     def health():
         return jsonify({"status": "ok"}), 200
 
+    @app.route('/', methods=['GET'])
+    def index():
+        return jsonify({
+            "message": "Superhero API",
+            "endpoints": ["/health", "/heroes", "/heroes/<id>", "/powers", "/powers/<id>", "/hero_powers", "/docs"]
+        }), 200
+
+    @app.route('/docs', methods=['GET'])
+    def docs():
+        return jsonify({
+            "title": "Superhero API Documentation",
+            "version": "1.0",
+            "description": "API for tracking heroes and their superpowers",
+            "endpoints": {
+                "GET /heroes": {
+                    "description": "Get a list of all heroes",
+                    "response": "Array of hero objects with id, name, super_name"
+                },
+                "GET /heroes/<id>": {
+                    "description": "Get a specific hero by ID",
+                    "response": "Hero object with nested hero_powers",
+                    "errors": {"404": "Hero not found"}
+                },
+                "GET /powers": {
+                    "description": "Get a list of all powers",
+                    "response": "Array of power objects with id, name, description"
+                },
+                "GET /powers/<id>": {
+                    "description": "Get a specific power by ID",
+                    "response": "Power object",
+                    "errors": {"404": "Power not found"}
+                },
+                "PATCH /powers/<id>": {
+                    "description": "Update a power's description",
+                    "body": {"description": "string (min 20 chars)"},
+                    "response": "Updated power object",
+                    "errors": {"404": "Power not found", "400": "Validation errors"}
+                },
+                "POST /hero_powers": {
+                    "description": "Create a hero-power association",
+                    "body": {"strength": "Strong|Weak|Average", "power_id": "int", "hero_id": "int"},
+                    "response": "Created HeroPower with nested hero and power",
+                    "errors": {"400": "Validation errors", "404": "Hero or power not found"}
+                },
+                "GET /health": {
+                    "description": "Health check",
+                    "response": {"status": "ok"}
+                },
+                "GET /": {
+                    "description": "API overview",
+                    "response": "List of endpoints"
+                }
+            }
+        }), 200
+
     @app.route('/heroes', methods=['GET'])
     def get_heroes():
         heroes = Hero.query.all()

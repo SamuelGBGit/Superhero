@@ -1,16 +1,26 @@
+import os
 from flask import Flask, request, jsonify
 from flask_migrate import Migrate
 from models import db, setup_db, Hero, Power, HeroPower
 
+
+# Read database URL from environment (Render/Heroku provide DATABASE_URL)
+def get_database_uri():
+    return os.environ.get('DATABASE_URL') or os.environ.get('SQLALCHEMY_DATABASE_URI') or 'sqlite:///superheroes.db'
+
 def create_app(test_config=None):
     app = Flask(__name__)
     app.config.from_mapping(
-        SQLALCHEMY_DATABASE_URI='sqlite:///superheroes.db',
+        SQLALCHEMY_DATABASE_URI=get_database_uri(),
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
     )
 
     setup_db(app)
     migrate = Migrate(app, db)
+
+    @app.route('/health', methods=['GET'])
+    def health():
+        return jsonify({"status": "ok"}), 200
 
     @app.route('/heroes', methods=['GET'])
     def get_heroes():
@@ -45,10 +55,14 @@ def create_app(test_config=None):
         desc = data.get('description')
         if desc is None:
             return jsonify({"errors": ["description is required"]}), 400
-        power.description = desc
         try:
+            power.description = desc
             db.session.add(power)
             db.session.commit()
+        except ValueError as ve:
+            db.session.rollback()
+            errs = getattr(power, 'errors', []) or [str(ve)]
+            return jsonify({"errors": errs}), 400
         except Exception:
             db.session.rollback()
             errs = getattr(power, 'errors', []) or ["invalid data"]
@@ -70,10 +84,14 @@ def create_app(test_config=None):
         if not hero or not power:
             return jsonify({"errors": ["hero or power not found"]}), 404
 
-        hp = HeroPower(hero_id=hero_id, power_id=power_id, strength=strength)
         try:
+            hp = HeroPower(hero_id=hero_id, power_id=power_id, strength=strength)
             db.session.add(hp)
             db.session.commit()
+        except ValueError as ve:
+            db.session.rollback()
+            errs = getattr(hp, 'errors', []) or [str(ve)]
+            return jsonify({"errors": errs}), 400
         except Exception:
             db.session.rollback()
             errs = getattr(hp, 'errors', []) or ["invalid data"]

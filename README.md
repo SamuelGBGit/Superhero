@@ -7,7 +7,6 @@ A Flask-based API for tracking superheroes and their powers.
 - SQLite with SQLAlchemy ORM for data management
 - JSON responses with proper HTTP status codes
 - Postman collection for easy testing
-- Docker support for containerized deployment
 
 ## Setup Instructions
 
